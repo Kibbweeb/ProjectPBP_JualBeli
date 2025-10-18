@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MadFragrance</title>
+  <link rel="stylesheet" href="bootstrap-5.3.8-dist/css/bootstrap.css">
+  <style>
+    body {
+      font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .nav-link {
+      font-size: 17px;
+      font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      color: #004C59;
+    }
+    .nav-link:hover {
+      color: #FF00FF;
+    }
+    .container-fluid {
+      position: relative;
+    }
+    .navbar-brand {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-weight: 600;
+      color: #880808;
+    }
+    .home-margin {
+      margin-left: 80px;
+    }
+    .placeholder {
+      font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      color: #004C59;
+    }
+    .open-banner {
+      background-color: #C6E600;
+      color: #004C59;
+      text-align: center;
+      font-weight: 600;
+      padding: 0.5rem 0;
+    }
+    .carousel-item img {
+      width: 100%;
+      height: 650px;
+      object-fit: cover;
+      filter: brightness(70%);
+    }
+    .carousel-caption {
+      position: absolute;
+      top: 50%;
+      left: 8%;
+      transform: translateY(-50%);
+      text-align: left;
+      color: white;
+      max-width: 500px;
+      animation: fadeInLeft 1.2s ease forwards;
+    }
+
+    .carousel-caption h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #880808;
+    }
+
+    .carousel-caption p {
+      font-size: 1.1rem;
+      margin-top: 10px;
+      color: #e0e0e0;
+    }
+
+    .carousel-caption.white {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      width: 90%;
+      max-width: 900px;
+      padding: 0 16px;
+    }
+
+    .carousel-caption.white h1 {
+      color: #ffffff;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 0;
+      line-height: 1.05;
+    }
+
+    .carousel-caption.white p {
+      color: rgba(255, 255, 255, 0.677);
+      margin-top: 0.5rem;
+      font-size: 1.05rem;
+    }
+
+    /* Grid produk */
+    .product-card {
+      text-align: center;
+      padding: 20px;
+      background-color: #f4f4f4;
+      transition: all 0.3s ease;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 280px;
+      object-fit: contain;
+      background-color: #f0ecec;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .product-title {
+      font-size: 1.1rem;
+      color: #004C59;
+      font-weight: 500;
+      margin-top: 15px;
+    }
+
+    .product-title:hover {
+      text-decoration: underline;
+    }
+
+    .arrow {
+      margin-left: 5px;
+      transition: margin-left 0.2s ease;
+    }
+
+    .product-card:hover .arrow {
+      margin-left: 10px;
+    }/* === CARD PRODUK === */
+    .product-card {
+      text-align: center;
+      padding: 20px;
+      background-color: #f7f7f7;
+      transition: all 0.3s ease;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .product-card:hover {
+      background-color: #e9f4f5;
+      transform: translateY(-5px);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 280px;
+      object-fit: contain;
+      background-color: #f1f1f1;
+      border-radius: 6px;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .product-title {
+      font-size: 1.1rem;
+      color: #004C59;
+      font-weight: 500;
+      margin-top: 15px;
+    }
+
+    .product-title:hover {
+      text-decoration: underline;
+    }
+
+    .product-container {
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+
+    .product-wrapper {
+      text-align: center;
+    }
+
+    .stars {
+      color: #198754;
+      font-size: 0.9rem;
+    }
+
+    .new-price {
+      color: #004C59;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .choose-btn {
+      border: 1px solid #004C59;
+      color: #004C59;
+      background-color: transparent;
+      font-weight: 500;
+      border-radius: 6px;
+      width: 100%;
+      margin-top: 15px;
+      padding: 10px 0;
+      transition: all 0.3s ease;
+    }
+
+    .choose-btn:hover {
+      background-color: #004C59;
+      color: white;
+    }
+
+    .brand-title {
+    font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #0d3b3b;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    line-height: 1.1;
+    color: #880808;
+    }
+
+    .brand-tagline {
+    font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #333;
+    font-size: 1.05rem;
+    line-height: 1.2;
+    margin: 0.2rem 0;
+    }
+
+    .footer {
+    background-color: #0B2B25;
+    color: #fff;
+    padding: 60px 40px 30px;
+    font-family: 'Inter', sans-serif;
+    }
+
+    .footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+    }
+
+    .footer-left {
+    flex: 1 1 250px;
+    max-width: 300px;
+    }
+
+    .brand-name {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    }
+
+    .footer-left p {
+    margin: 0;
+    line-height: 1.6;
+    font-size: 15px;
+    }
+
+    /* 3 kolom kanan */
+    .footer-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    flex: 2;
+    gap: 30px;
+    }
+
+    .footer-links h4 {
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    }
+
+    .footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    }
+
+    .footer-links li {
+    margin-bottom: 8px;
+    }
+
+    .footer-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 15px;
+    transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+    color: #FF00FF;
+    }
+
+    .footer hr {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 30px 0;
+    }
+
+    .footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    font-size: 14px;
+    }
+
+
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand mx-auto" href="index.html">MadFragrance</a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link home-margin" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link mx-3" href="products.html">Products</a></li>
+          <li class="nav-item"><a class="nav-link mx-3" href="cart.html">Cart</a></li>
+          <li class="nav-item"><a class="nav-link active mx-3" href="about.html">About Us</a></li>
+        </ul>
+         <form class="d-flex align-items-center" role="search" id="searchForm">
+          <input class="form-control me-2" id="searchInput" type="search" placeholder="Search" aria-label="Search"/>
+          <button class="btn btn-outline-success" id="searchBtn" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Banner -->
+  <div class="open-banner">Free shipping for orders over Rp 450.000,00 IDR!</div>
+
+  <div id="singleCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="img/elegant-skin-care-banner-design.jpg" class="d-block w-100" alt="MadFragrance Banner">
+        <div class="carousel-caption">
+          <h1>MadFragrance</h1>
+          <p>Find Your Signature Scent.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br><br><br><br>
+
+  <h2 class="text-center">Who We Are</h2>
+    <div class="container">
+        <p class="text-center mx-auto" style="max-width: 900px;">MadFragrance is a socially and environmentally progressive fragrance craft brand dedicated to creating unique scents that empower individuals to express their true selves. Our mission is to cultivate strength and confidence through the art of fragrance, allowing our customers to embark on a sensory journey that resonates with their inner spirit.</p>
+        <p class="text-center mx-auto" style="max-width: 900px;">Inspired by the mythical world of Murim, our fragrances are designed to evoke the essence of heavenly demons, blending boldness with elegance. At MadFragrance, we believe that a great scent is more than just a fragrance; it's an experience that activates your senses and enhances your presence in the world.</p>
+    </div>
+    <br><br><br>
+
+    <div id="singleCarousel1" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="img/976efc8f-a997-4e78-a2d7-26e4a46e66c1-1726532972974-4bce0264-198e-4d6d-b049-b51404a7e232 (1).webp" class="d-block w-100" alt="MadFragrance Banner">
+          <div class="carousel-caption white">
+            <h1>Where we are</h1>
+            <p>MadFragrance HQ is located in the city of Hajun, Shaanxi, China. Where the essence of heavenly demons is captured in every bottle. Come visit us to experience the magic of our fragrances.</p><br><br><br><br><br>
+            <h1>Contact Us</h1>
+            <p>Email: info@madfragrance.com</p>
+            <p>Phone: +86 123 456 7890</p>
+            <p>Address: 123 Fragrance St, Hajun, Shaanxi, China</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br><br><br>
+
+    <h2 class="text-center">Our Values</h2>
+    <div class="container">
+        <p class="text-center mx-auto" style="max-width: 900px;">At MadFragrance, our core values are deeply rooted in social responsibility, environmental sustainability, and the celebration of individuality. We are committed to crafting fragrances that not only captivate the senses but also contribute positively to the world around us.</p>
+        <p class="text-center mx-auto" style="max-width: 900px;">We prioritize ethical sourcing of ingredients, ensuring that our products are cruelty-free and environmentally friendly. Our dedication to sustainability extends to our packaging, which is designed to minimize waste and reduce our carbon footprint.</p>
+        <p class="text-center mx-auto" style="max-width: 900px;">MadFragrance is more than just a brand; it's a movement towards embracing one's true self through the power of scent. We believe in the transformative ability of fragrance to inspire confidence, evoke emotions, and create lasting memories. Join us on this journey as we cultivate strength and activate your scent.</p>
+    </div>
+
+    <br><br><br>
+    <h2 class="text-center brand-title">MadFragrance</h2>
+    <p class="text-center brand-tagline">Cultivate Your Strength, Activate Your Scent!</p>
+    <p class="text-center brand-tagline">Smells Like The Heavenly Demons, Enjoy Your Journey in Murim</p>
+    <br><br><br>
+
+    <footer class="footer">
+  <div class="footer-container">
+
+    <!-- KIRI: Nama brand + deskripsi -->
+    <div class="footer-left">
+      <h2 class="brand-name">MadFragrance</h2>
+      <p>Socially and environmentally progressive fragrance craft.</p>
+    </div>
+
+    <!-- KANAN: Link navigasi -->
+    <div class="footer-links">
+      <div>
+        <h4>Our Shop</h4>
+        <ul>
+          <li><a href="#">All Products</a></li>
+          <li><a href="#">The Weekend Frags™</a></li>
+          <li><a href="#">Tester</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Shipping Policy</a></li>
+          <li><a href="#">Refund Policy</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>About Us</h4>
+        <ul>
+          <li><a href="#">Values</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- BAWAH -->
+  <div class="footer-bottom">
+    <p class="text-center">This website is created only for educational purposes. All trademarks and products belong to their respective owners.</p>
+  </div>
+</footer>
+
+<script>
+// === UNIVERSAL SEARCH FUNCTION ===
+document.getElementById("searchForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const keyword = document.getElementById("searchInput").value.trim().toLowerCase();
+  if (keyword) {
+    // Simpan kata kunci di localStorage agar bisa dipakai di halaman produk
+    localStorage.setItem("searchKeyword", keyword);
+    // Arahkan ke halaman produk
+    window.location.href = "products.html";
+  }
+});
+</script>
+
+
+  <script src="bootstrap-5.3.8-dist/js/bootstrap.bundle.js"></script>
+</body>
+</html>

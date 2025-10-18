@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MadFragrance</title>
+  <link rel="stylesheet" href="bootstrap-5.3.8-dist/css/bootstrap.css">
+  <style>
+    body {
+      font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .nav-link {
+      font-size: 17px;
+      font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      color: #004C59;
+    }
+    .nav-link:hover {
+      color: #FF00FF;
+    }
+    .container-fluid {
+      position: relative;
+    }
+    .navbar-brand {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-weight: 600;
+      color: #880808;
+    }
+    .home-margin {
+      margin-left: 80px;
+    }
+    .placeholder {
+      font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      color: #004C59;
+    }
+    .open-banner {
+      background-color: #C6E600;
+      color: #004C59;
+      text-align: center;
+      font-weight: 600;
+      padding: 0.5rem 0;
+    }
+    .carousel-item img {
+      width: 100%;
+      height: 650px;
+      object-fit: cover;
+      filter: brightness(70%);
+    }
+    .carousel-caption {
+      position: absolute;
+      top: 50%;
+      left: 8%;
+      transform: translateY(-50%);
+      text-align: left;
+      color: white;
+      max-width: 500px;
+      animation: fadeInLeft 1.2s ease forwards;
+    }
+
+    .carousel-caption h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #880808;
+    }
+
+    .carousel-caption p {
+      font-size: 1.1rem;
+      margin-top: 10px;
+      color: #e0e0e0;
+    }
+
+    /* Grid produk */
+    .product-card {
+      text-align: center;
+      padding: 20px;
+      background-color: #f4f4f4;
+      transition: all 0.3s ease;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 280px;
+      object-fit: contain;
+      background-color: #f0ecec;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .product-title {
+      font-size: 1.1rem;
+      color: #004C59;
+      font-weight: 500;
+      margin-top: 15px;
+    }
+
+    .product-title:hover {
+      text-decoration: underline;
+    }
+
+    .arrow {
+      margin-left: 5px;
+      transition: margin-left 0.2s ease;
+    }
+
+    .product-card:hover .arrow {
+      margin-left: 10px;
+    }/* === CARD PRODUK === */
+    .product-card {
+      text-align: center;
+      padding: 20px;
+      background-color: #f7f7f7;
+      transition: all 0.3s ease;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .product-card:hover {
+      background-color: #e9f4f5;
+      transform: translateY(-5px);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 280px;
+      object-fit: contain;
+      background-color: #f1f1f1;
+      border-radius: 6px;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .product-title {
+      font-size: 1.1rem;
+      color: #004C59;
+      font-weight: 500;
+      margin-top: 15px;
+    }
+
+    .product-title:hover {
+      text-decoration: underline;
+    }
+
+    .product-container {
+      padding-top: 30px;
+      padding-bottom: 60px;
+    }
+
+    .product-wrapper {
+      text-align: center;
+    }
+
+    .stars {
+      color: #198754;
+      font-size: 0.9rem;
+    }
+
+    .new-price {
+      color: #004C59;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .choose-btn {
+      border: 1px solid #004C59;
+      color: #004C59;
+      background-color: transparent;
+      font-weight: 500;
+      border-radius: 6px;
+      width: 100%;
+      margin-top: 15px;
+      padding: 10px 0;
+      transition: all 0.3s ease;
+    }
+
+    .choose-btn:hover {
+      background-color: #004C59;
+      color: white;
+    }
+
+    .brand-title {
+    font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #0d3b3b;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    line-height: 1.1;
+    color: #880808;
+    }
+
+    .brand-tagline {
+    font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #333;
+    font-size: 1.05rem;
+    line-height: 1.2;
+    margin: 0.2rem 0;
+    }
+
+    .footer {
+    background-color: #0B2B25;
+    color: #fff;
+    padding: 60px 40px 30px;
+    font-family: 'Inter', sans-serif;
+    }
+
+    .footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+    }
+
+    .footer-left {
+    flex: 1 1 250px;
+    max-width: 300px;
+    }
+
+    .brand-name {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    }
+
+    .footer-left p {
+    margin: 0;
+    line-height: 1.6;
+    font-size: 15px;
+    }
+
+    /* 3 kolom kanan */
+    .footer-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    flex: 2;
+    gap: 30px;
+    }
+
+    .footer-links h4 {
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    }
+
+    .footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    }
+
+    .footer-links li {
+    margin-bottom: 8px;
+    }
+
+    .footer-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 15px;
+    transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+    color: #FF00FF;
+    }
+
+    .footer hr {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 30px 0;
+    }
+
+    .footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    font-size: 14px;
+    }
+
+
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand mx-auto" href="index.html">MadFragrance</a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active home-margin" href="index.html" aria-current="page">Home</a></li>
+          <li class="nav-item"><a class="nav-link mx-3" href="products.html">Products</a></li>
+          <li class="nav-item"><a class="nav-link mx-3" href="cart.html">Cart</a></li>
+          <li class="nav-item"><a class="nav-link mx-3" href="about.html">About Us</a></li>
+        </ul>
+        <form class="d-flex align-items-center" role="search" id="searchForm">
+          <input class="form-control me-2" id="searchInput" type="search" placeholder="Search" aria-label="Search"/>
+          <button class="btn btn-outline-success" id="searchBtn" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Banner -->
+  <div class="open-banner">Free shipping for orders over Rp 450.000,00 IDR!</div>
+
+  <div id="singleCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="img/elegant-skin-care-banner-design.jpg" class="d-block w-100" alt="MadFragrance Banner">
+        <div class="carousel-caption">
+          <h1>MadFragrance</h1>
+          <p>Find Your Signature Scent.</p>
+      </div>
+    </div>
+  </div>
+  <br><br><br><br>
+
+  <h2 class="text-center">Shop By Occasion</h2>
+
+  <!-- Kontainer produk -->
+  <div class="container product-container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+
+      <!-- Produk 1 -->
+      <div class="col">
+        <div class="product-wrapper">
+          <div class="product-card">
+            <img src="img/lost_in_the_italian_sea_1.webp" alt="School">
+          </div>
+          <a class="product-title" href="products.html">School →</a>
+        </div>
+      </div>
+
+      <!-- Produk 2 -->
+      <div class="col">
+        <div class="product-wrapper">
+          <div class="product-card">
+            <img src="img/images (1).jpg" alt="Exercise">
+          </div>
+            <a class="product-title" href="products.html">Exercise →</a>
+        </div>
+      </div>
+
+      <!-- Produk 3 -->
+      <div class="col">
+        <div class="product-wrapper">
+          <div class="product-card">
+            <img src="img/id-11134207-7rasd-m1b66309gdh021.jpg" alt="Night Out">
+          </div>
+          <a class="product-title" href="products.html">Night Out →</a>
+        </div>
+      </div>
+
+      <!-- Produk 4 -->
+      <div class="col">
+        <div class="product-wrapper">
+            <div class="product-card">
+                <img src="img/California_Blue-16.jpg" alt="All Occasions">
+          </div>
+          <a class="product-title" href="products.html">All Occasions →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br><br><br><br>
+
+  <h2 class="text-center">Featured Products</h2>
+
+  <div class="container product-container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+
+      <!-- Produk 1 -->
+      <div class="col">
+        <div class="product-card">
+          <img src="img/lost_in_the_italian_sea_1.webp" alt="LTIS">
+          <div class="product-title">SoP - Lost in the Italian Sea</div>
+          <div class="product-description" data-description="Top Notes: Italian Bergamot, Aldehydes.
+          Middle Notes: Jasmine, Orange Blossom.
+          Base Notes: Sandalwood, White Musk."></div>
+          <div class="stars">★★★★★ <span class="text-muted">(2)</span></div>
+          <div><span class="new-price">Rp 247.000 IDR</span></div>
+          <button class="choose-btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Produk 2 -->
+      <div class="col">
+        <div class="product-card">
+          <img src="img/images (1).jpg" alt="TAP">
+          <div class="product-title">SoP - The Active Project</div>
+          <div class="product-description" data-description="Top Notes: Mandarin, Bergamot, Orange.
+          Middle Notes: Neroli, Pepper, Cardamom.
+          Base Notes: Musk, Amber, Vetiver."></div>
+          <div class="stars">★★★★★ <span class="text-muted">(15)</span></div>
+          <div><span class="new-price">Rp 280.000 IDR</span></div>
+          <button class="choose-btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Produk 3 -->
+      <div class="col">
+        <div class="product-card">
+          <img src="img/id-11134207-7rasd-m1b66309gdh021.jpg" alt="SiS">
+          <div class="product-title">Project 1945 - Sunset in Sumba</div>
+          <div class="product-description" data-description="Perfume Notes: Red Apple, Cardamom, Black Pepper, Lavender, Incense."></div>
+          <div class="stars">★★★★★ <span class="text-muted">(9)</span></div>
+          <div><span class="new-price">Rp 300.000,00 IDR</span></div>
+          <button class="choose-btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Produk 4 -->
+      <div class="col">
+        <div class="product-card">
+          <img src="img/California_Blue-16.jpg" alt="CFB">
+          <div class="product-title">Mykonos - California Blue</div>
+          <div class="product-description" data-description="Top Notes: Mandarin Orange, Lemon.
+          Middle Notes: Lychee, Rosemary, Cardamom, Lavender, Geranium, Aquatic Notes.
+          Base Notes: Tonka Bean, Teak Wood, Vetiver."></div>
+          <div class="stars">★★★★★ <span class="text-muted">(19)</span></div>
+          <div><span class="new-price">Rp 168.000 IDR</span></div>
+          <button class="choose-btn">Add to Cart</button>
+        </div>
+      </div>
+
+            <!-- Modal: Product Detail -->
+      <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalTitle">Product Title</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex gap-4">
+              <img id="modalImage" src="" alt="product" style="width:40%;object-fit:contain;border-radius:6px;background:#f7f7f7;padding:10px;">
+              <div style="flex:1">
+                <div id="modalStars" class="mb-2"></div>
+                <h4 id="modalPrice" class="text-success"></h4>
+                <p id="modalDesc" class="mt-3 text-muted"></p>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button id="modalAddBtn" type="button" class="btn btn-success">Add to Cart</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+    <br><br><br>
+    <h2 class="text-center brand-title">MadFragrance</h2>
+    <p class="text-center brand-tagline">Cultivate Your Strength, Activate Your Scent!</p>
+    <p class="text-center brand-tagline">Smells Like The Heavenly Demons, Enjoy Your Journey in Murim</p>
+    <br><br><br>
+
+    <footer class="footer">
+  <div class="footer-container">
+
+    <!-- KIRI: Nama brand + deskripsi -->
+    <div class="footer-left">
+      <h2 class="brand-name">MadFragrance</h2>
+      <p>Socially and environmentally progressive fragrance craft.</p>
+    </div>
+
+    <!-- KANAN: Link navigasi -->
+    <div class="footer-links">
+      <div>
+        <h4>Our Shop</h4>
+        <ul>
+          <li><a href="products.html">All Products</a></li>
+          <li><a href="products.html">The Weekend Frags™</a></li>
+          <li><a href="products.html">Tester</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">Notes Guide</a></li>
+          <li><a href="#">Shipping Policy</a></li>
+          <li><a href="#">Refund Policy</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>About Us</h4>
+        <ul>
+          <li><a href="about.html">Values</a></li>
+          <li><a href="about.html">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- BAWAH -->
+  <div class="footer-bottom">
+    <p class="text-center">This website is created only for educational purposes. All trademarks and products belong to their respective owners.</p>
+  </div>
+</footer>
+
+
+
+  <script src="bootstrap-5.3.8-dist/js/bootstrap.bundle.js"></script>
+
+  <script>
+  const buttons = document.querySelectorAll(".choose-btn");
+  buttons.forEach(button => {
+    button.addEventListener("click", (e) => {
+      const card = e.target.closest(".product-card");
+      const title = card.querySelector(".product-title").innerText;
+      const price = card.querySelector(".new-price").innerText;
+      const image = card.querySelector("img").getAttribute("src");
+
+      const product = { title, price, image };
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.push(product);
+      localStorage.setItem("cart", JSON.stringify(cart));
+
+      alert(`${title} added to cart!`);
+    });
+  });
+</script>
+
+<script>
+  // buka modal ketika klik gambar atau judul; isi konten dari element di kartu
+  (function () {
+    const modalEl = document.getElementById('productModal');
+    const bsModal = new bootstrap.Modal(modalEl);
+
+    document.querySelectorAll('.product-card').forEach(card => {
+      const img = card.querySelector('img');
+      const titleEl = card.querySelector('.product-title');
+
+      [img, titleEl].forEach(el => {
+        if (!el) return;
+        el.style.cursor = 'pointer';
+        el.addEventListener('click', (e) => {
+          // jangan buka modal saat klik tombol Add to Cart
+          if (e.target.closest('.choose-btn')) return;
+
+          const title = titleEl ? titleEl.innerText.trim() : (img.alt || 'Product');
+          const priceEl = card.querySelector('.new-price');
+          const price = priceEl ? priceEl.innerText.trim() : '';
+          const starsEl = card.querySelector('.stars');
+          const stars = starsEl ? starsEl.innerHTML : '';
+          const image = img ? img.getAttribute('src') : '';
+          const descEl = card.querySelector('.product-description');
+          const desc = descEl
+            ? (descEl.getAttribute('data-description') || descEl.innerText.trim() || 'No description available.')
+            : 'No description available.';
+
+          modalEl.querySelector('#modalTitle').innerText = title;
+          modalEl.querySelector('#modalImage').setAttribute('src', image);
+          modalEl.querySelector('#modalPrice').innerText = price;
+          modalEl.querySelector('#modalStars').innerHTML = stars;
+          modalEl.querySelector('#modalDesc').innerText = desc;
+
+          bsModal.show();
+        });
+      });
+    });
+
+    // tombol Add to Cart dalam modal
+    document.getElementById('modalAddBtn').addEventListener('click', () => {
+      const title = modalEl.querySelector('#modalTitle').innerText;
+      const price = modalEl.querySelector('#modalPrice').innerText;
+      const image = modalEl.querySelector('#modalImage').getAttribute('src');
+
+      const product = { title, price, image };
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.push(product);
+      localStorage.setItem('cart', JSON.stringify(cart));
+
+      bsModal.hide();
+      alert(`${title} added to cart!`);
+    });
+  })();
+</script>
+
+  <script>
+// === UNIVERSAL SEARCH FUNCTION ===
+document.getElementById("searchForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const keyword = document.getElementById("searchInput").value.trim().toLowerCase();
+  if (keyword) {
+    // Simpan kata kunci di localStorage agar bisa dipakai di halaman produk
+    localStorage.setItem("searchKeyword", keyword);
+    // Arahkan ke halaman produk
+    window.location.href = "products.html";
+  }
+});
+</script>
+
+
+
+</body>
+</html>
